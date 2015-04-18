@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+ 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lineas"
+                android:background="@drawable/btn_blue"
+                style="@style/ButtonText"
+                android:text="Sigue lineas"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/autonomo"
+                android:background="@drawable/btn_red"
+                style="@style/ButtonText"
+                android:text="Sistema autonomo"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/control"
+                android:background="@drawable/btn_green"
+                style="@style/ButtonText"
+                android:text="Control manual"/>
+</LinearLayout>
+

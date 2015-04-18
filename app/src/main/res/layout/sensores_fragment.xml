@@ -1,0 +1,50 @@
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/temperatura"
+        android:text="Temperatura:"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/htierra"
+        android:text="Humedad de la tierra:"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/haire"
+        android:text="Humedad del aire:"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rocio"
+        android:text="Nivel de rocio:"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/grados_bruj"
+        android:text="Grados brujula:"/>
+
+
+    <fr.castorflex.android.circularprogressbar.CircularProgressBar
+        android:id="@+id/circularProgress"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="12dp"
+        android:indeterminate="true"
+        android:indeterminateOnly="false"
+        android:visibility="invisible"
+        app:cpb_colors="@array/fragment_colors"
+        app:cpb_rotation_speed="1.0"
+        app:cpb_sweep_speed="2.0" />
+
+
+</LinearLayout>

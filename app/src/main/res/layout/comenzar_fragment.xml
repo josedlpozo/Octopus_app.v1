@@ -1,0 +1,44 @@
+<RelativeLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnJoinCar"
+        android:background="@drawable/btn_green"
+        style="@style/ButtonText"
+        android:layout_centerInParent="true"
+        android:text="Join CarBT"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnJoinSensor"
+        android:background="@drawable/btn_green"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/btnJoinCar"
+        style="@style/ButtonText"
+        android:text="Join SensorBT"
+        />
+
+    <fr.castorflex.android.circularprogressbar.CircularProgressBar
+        android:id="@+id/circularProgress"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="12dp"
+        android:indeterminate="true"
+        android:indeterminateOnly="false"
+        android:visibility="invisible"
+        app:cpb_colors="@array/fragment_colors"
+        app:cpb_rotation_speed="1.0"
+        app:cpb_sweep_speed="2.0" />
+
+
+</RelativeLayout>
