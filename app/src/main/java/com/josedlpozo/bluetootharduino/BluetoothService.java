@@ -93,12 +93,13 @@ public class BluetoothService {
                 case BluetoothService.MESSAGE_READ:
 
                     String readMessage = (String) msg.obj;
+                    Log.i(TAG,readMessage);
                     recDataString.append(readMessage); //keep appending to string until ~
-                    int endOfLineIndex = recDataString.indexOf("+");
+                    int endOfLineIndex = recDataString.indexOf("*");
 
                     if(endOfLineIndex>0) {
-                        //Log.i(TAG,""+endOfLineIndex);
-                        String dataInPrint = recDataString.substring(0, endOfLineIndex);
+                        Log.i("JOSE",""+endOfLineIndex);
+                        String dataInPrint = recDataString.substring(0, endOfLineIndex+1);
                         Variables.INSTANCE.setRecibido(dataInPrint);
                     }
                     break;

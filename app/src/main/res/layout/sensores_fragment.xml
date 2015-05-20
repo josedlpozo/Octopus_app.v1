@@ -1,4 +1,4 @@
-<LinearLayout
+<RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
@@ -9,27 +9,46 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/temperatura"
-        android:text="Temperatura:"/>
+        android:text="Temperatura:"
+        android:padding="5dp"
+        android:textSize="20dp"
+        android:gravity="center"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/htierra"
-        android:text="Humedad de la tierra:"/>
+        android:text="Humedad de la tierra:"
+        android:padding="5dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_below="@+id/temperatura"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/haire"
-        android:text="Humedad del aire:"/>
+        android:text="Humedad del aire:"
+        android:padding="5dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_below="@+id/htierra"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/rocio"
-        android:text="Nivel de rocio:"/>
+        android:text="Nivel de rocio:"
+        android:padding="5dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_below="@id/haire"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/grados_bruj"
-        android:text="Grados brujula:"/>
+        android:text="Grados brujula:"
+        android:padding="5dp"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_below="@+id/rocio"/>
 
 
     <fr.castorflex.android.circularprogressbar.CircularProgressBar
@@ -47,4 +66,4 @@
         app:cpb_sweep_speed="2.0" />
 
 
-</LinearLayout>
+</RelativeLayout>

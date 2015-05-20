@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">BluetoothArduino</string>
+    <string name="app_name">Octopus</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_splash">Splash</string>
@@ -32,6 +32,11 @@
         <item>@color/prueba</item>
         <item>@color/blue</item>
     </integer-array>
+    <string name="title_activity_login">Login</string>
+
+    <string name="username">Usuario:</string>
+    <string name="password">Contraseña:</string>
+    <string name="Login">Login:</string>
 
 
 </resources>

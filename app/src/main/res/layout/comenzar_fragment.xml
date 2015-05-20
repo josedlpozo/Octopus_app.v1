@@ -3,28 +3,86 @@
     android:layout_height="fill_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fab="http://schemas.android.com/tools"
+    android:layout_gravity="center">
 
-    <Button
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnJoinCar"
-        android:background="@drawable/btn_green"
-        style="@style/ButtonText"
-        android:layout_centerInParent="true"
-        android:text="Join CarBT"
-        />
+        android:id="@+id/motor"
+        android:layout_marginTop="120dp"
+        >
 
-    <Button
-        android:layout_width="match_parent"
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Control coche: "
+            android:textSize="20dp"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/txtcoche"
+            android:layout_marginTop="20dp"
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnJoinCar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/add_mm"
+
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@+id/check1"
+            android:layout_alignParentTop="true"
+            />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/check1"
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"></CheckBox>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnJoinSensor"
-        android:background="@drawable/btn_green"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/btnJoinCar"
-        style="@style/ButtonText"
-        android:text="Join SensorBT"
-        />
+        android:layout_below="@+id/motor"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Control sensores: "
+            android:textSize="20dp"
+            android:id="@+id/txtsensor"
+            android:layout_marginTop="20dp"
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnJoinSensor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/add_mm"
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@+id/check2"
+            android:layout_alignParentTop="true"
+            />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/check2"
+            android:layout_alignParentRight="true"
+            android:layout_margin="20dp"
+            ></CheckBox>
+
+
+    </RelativeLayout>
+
+
+
 
     <fr.castorflex.android.circularprogressbar.CircularProgressBar
         android:id="@+id/circularProgress"

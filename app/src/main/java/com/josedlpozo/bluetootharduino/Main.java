@@ -60,6 +60,8 @@ public class Main extends ActionBarActivity {
     private static final int REQUEST_CONNECT_DEVICE = 1;
     private static final int REQUEST_ENABLE_BT = 2;
 
+    private static final int REQUEST_LOGIN = 3;
+
     private Bqzum bqzum;
 
     private Button joinCar;
@@ -77,6 +79,9 @@ public class Main extends ActionBarActivity {
     SlidingTabLayout tabs;
     CharSequence Titles[]={"CONEXION","SENSORES","CONTROL"};
     int Numboftabs =3;
+
+    private static final int SEND = 1;
+    private static final int NOT_SEND = 0;
 
 
 
@@ -119,14 +124,17 @@ public class Main extends ActionBarActivity {
                     case 0:
                         tabs.setBackgroundColor(getResources().getColor(R.color.green_octopus));
                         toolbar.setBackgroundColor(getBaseContext().getResources().getColor(R.color.ColorPrimaryDark));
+                        pager.setBackgroundColor(getBaseContext().getResources().getColor(R.color.ColorPrimaryDark));
                         break;
                     case 1:
                         tabs.setBackgroundColor(getResources().getColor(R.color.azul));
                         toolbar.setBackgroundColor(getResources().getColor(R.color.azul2));
+                        pager.setBackgroundColor(getBaseContext().getResources().getColor(R.color.azul2));
                         break;
                     case 2:
                         tabs.setBackgroundColor(getResources().getColor(R.color.rojo));
                         toolbar.setBackgroundColor(getResources().getColor(R.color.rojo2));
+                        pager.setBackgroundColor(getBaseContext().getResources().getColor(R.color.rojo2));
                         break;
                     default:
                         tabs.setBackgroundColor(getResources().getColor(R.color.primaryColor));
@@ -138,7 +146,6 @@ public class Main extends ActionBarActivity {
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
-        toolbar.setBackgroundColor(getBaseContext().getResources().getColor(R.color.ColorPrimaryDark));
 
 
     }
@@ -155,35 +162,6 @@ public class Main extends ActionBarActivity {
     }
 
 
-    private void setupCar() {
-        joinCar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                motorSensor = MOTOR;
-                if (bqzum.getMotorStatus()) {
-                    bqzum.disconnectMotor();
-                } else {
-                    Intent serverIntent = new Intent(Main.this, DeviceListActivity.class);
-                    startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
-                }
-            }
-        });
-    }
-
-    private void setupSensor() {
-        joinSensor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                motorSensor = SENSOR;
-                if (bqzum.getSensorStatus()) {
-                    bqzum.disconnectSensor();
-                } else {
-                    Intent serverIntent = new Intent(Main.this, DeviceListActivity.class);
-                    startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
-                }
-            }
-        });
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -205,6 +183,10 @@ public class Main extends ActionBarActivity {
                     .positiveText("OK")
                     .show();
         }
+        if(id == R.id.login){
+            Intent serverIntent = new Intent(this, Login.class);
+            startActivityForResult(serverIntent, REQUEST_LOGIN);
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -217,6 +199,8 @@ public class Main extends ActionBarActivity {
                 if (resultCode == Activity.RESULT_OK) {
                     // Get the device MAC address
                     String address = data.getExtras().getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+                    Bundle extras = data.getExtras();
+                    motorSensor = extras.getInt("MOTORSENSOR");
                     if (motorSensor == MOTOR) {
                         Variables.INSTANCE.setMotorAddress(address);
                         try {
@@ -251,9 +235,20 @@ public class Main extends ActionBarActivity {
                             .show(Variables.INSTANCE.getActivity()); // activity where it is displayed
                 } else {
                     Log.d(TAG, "BT not enabled");
-                    Toast.makeText(this, "BT not enabled",
-                            Toast.LENGTH_SHORT).show();
+                    Snackbar.with(Variables.INSTANCE.getAppContext()) // context
+                            .text("Bluetooth no activado.") // text to display
+                            .show(Variables.INSTANCE.getActivity()); // activity where it is displayed
                     finish();
+                }
+                break;
+            case REQUEST_LOGIN:
+                if(resultCode == Activity.RESULT_OK){
+                    String user = data.getExtras().getString(Login.USER);
+                    Variables.INSTANCE.setUser(user);
+                    Variables.INSTANCE.setSend(SEND);
+                    Log.i(TAG,Variables.INSTANCE.getUser());
+                }else{
+                    Variables.INSTANCE.setSend(NOT_SEND);
                 }
         }
     }

@@ -56,9 +56,14 @@ public class DeviceListActivity extends ActionBarActivity implements ReciclerVie
         Bluetooth bt = mAdapter.getBluetoothList().get(position);
         String info = bt.getName().toString();
         String address = info.substring(info.length() - 17);
+
+
         // Create the result Intent and include the MAC address
         Intent intent = new Intent();
         intent.putExtra(EXTRA_DEVICE_ADDRESS, address);
+        Bundle b = new Bundle();
+        b.putInt("MOTORSENSOR",motorSensor);
+        intent.putExtras(b);
         // Set result and finish this Activity
         setResult(Activity.RESULT_OK, intent);
         finish();
@@ -127,11 +132,15 @@ public class DeviceListActivity extends ActionBarActivity implements ReciclerVie
         mBtAdapter.startDiscovery();
     }
 
+    int motorSensor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Setup the window
         setContentView(R.layout.activity_device_list);
+
+        motorSensor = getIntent().getExtras().getInt("MOTORSENSOR");
         // Set result CANCELED incase the user backs out
         setResult(Activity.RESULT_CANCELED);
         // Initialize the button to perform device discovery
@@ -146,7 +155,7 @@ public class DeviceListActivity extends ActionBarActivity implements ReciclerVie
 
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
-        toolbar.setBackgroundColor(getBaseContext().getResources().getColor(R.color.ColorPrimaryDark));
+        toolbar.setBackgroundColor(getBaseContext().getResources().getColor(R.color.green_octopus));
 
         ArrayList<BluetoothDevice> item = new ArrayList<BluetoothDevice>();
         // Initialize array adapters. One for already paired devices and

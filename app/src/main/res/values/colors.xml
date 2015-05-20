@@ -12,6 +12,7 @@
     <item name="darkorange" type="color">#FFFF8800</item>
     <item name="darkred" type="color">#FFCC0000</item>
     <item name="green_octopus" type="color">#61B750</item>
+    <item name="negro" type="color">#000000</item>
  
     <integer-array name="androidcolors">
         <item>@color/blue</item>
@@ -39,6 +40,8 @@
         <color name="azul2">#81d4fa</color>
         <color name="rojo">#f44336</color>
         <color name="rojo2">#e57373</color>
+        <color name="morado">#9c27b0</color>
+        <color name="morado2">#ab47bc</color>
     
  
 </resources>

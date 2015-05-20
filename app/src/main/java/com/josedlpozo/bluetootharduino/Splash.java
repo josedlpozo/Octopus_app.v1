@@ -21,13 +21,19 @@ import java.util.TimerTask;
 public class Splash extends Activity implements Animation.AnimationListener {
 
     private static final long SPLASH_SCREEN_DELAY = 3000;
+    private static final long ZOOM_TO_BLINK = 1500;
+    private static final long BLINK_TO_MOVE = 1800;
+    private static final long MOVE_TO_FADEIN = 500;
 
-    TextView txtMessage;
 
     // Animation
     Animation animFadein;
+    Animation animBlink;
+    Animation animZoomIn;
+    Animation animMove;
 
     ImageView imagen;
+    ImageView imagen2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,15 +46,82 @@ public class Splash extends Activity implements Animation.AnimationListener {
 
         setContentView(R.layout.activity_splash);
 
-        txtMessage = (TextView) findViewById(R.id.octo);
+        imagen = (ImageView) findViewById(R.id.img);
+        imagen2 = (ImageView) findViewById(R.id.img2);
 
         animFadein = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.fade_in);
+        animBlink = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.blink);
+        animZoomIn = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.zoom_in);
+        animMove = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.move);
 
         animFadein.setAnimationListener(this);
+        animBlink.setAnimationListener(this);
+        animZoomIn.setAnimationListener(this);
+        animMove.setAnimationListener(this);
 
-        txtMessage.startAnimation(animFadein);
+        imagen2.setVisibility(View.VISIBLE);
 
-        imagen = (ImageView) findViewById(R.id.img);
+
+        imagen2.setAnimation(animZoomIn);
+        imagen2.startAnimation(animZoomIn);
+
+        Thread thread;
+
+        thread = new Thread(){
+            @Override
+            public void run() {
+                try {
+                    synchronized (this) {
+                        wait(ZOOM_TO_BLINK);
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                imagen2.setAnimation(animBlink);
+                                imagen2.startAnimation(animBlink);
+                            }
+                        });
+
+                        wait(BLINK_TO_MOVE);
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                imagen2.setAnimation(animMove);
+                                imagen2.startAnimation(animMove);
+                            }
+                        });
+
+                        wait(500);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                imagen.setVisibility(View.VISIBLE);
+                                imagen.setAnimation(animFadein);
+                                imagen.startAnimation(animFadein);
+                                imagen2.setVisibility(View.GONE);
+                            }
+                        });
+
+                        wait(2000);
+
+                        Intent mainIntent = new Intent().setClass(Splash.this,Main.class);
+                        startActivity(mainIntent);
+
+                        finish();
+
+
+
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            };
+        };
+        thread.start();
+
 
 
     }
@@ -57,22 +130,7 @@ public class Splash extends Activity implements Animation.AnimationListener {
     public void onAnimationEnd(Animation animation) {
         // Take any action after completing the animation
 
-        // check for fade in animation
-        if (animation == animFadein) {
-            TimerTask task = new TimerTask() {
-                @Override
-                public void run() {
-                    Intent mainIntent = new Intent().setClass(Splash.this,Main.class);
-                    startActivity(mainIntent);
 
-                    finish();
-                }
-            };
-            txtMessage.setVisibility(View.GONE);
-            imagen.setVisibility(View.VISIBLE);
-            Timer timer = new Timer();
-            timer.schedule(task, SPLASH_SCREEN_DELAY);
-        }
 
     }
 

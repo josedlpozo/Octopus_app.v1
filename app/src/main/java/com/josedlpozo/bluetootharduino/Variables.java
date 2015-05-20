@@ -33,6 +33,10 @@ public enum Variables {
 
     private CircularProgressBar circularProgressBar;
 
+    private String user;
+
+    private int send;
+
 
     private Variables(){
 
@@ -103,5 +107,21 @@ public enum Variables {
 
     public void setRecibido(String recibido) {
         this.recibido = recibido;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public int getSend() {
+        return send;
+    }
+
+    public void setSend(int send) {
+        this.send = send;
     }
 }

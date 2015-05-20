@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cambiar modo"
+        android:id="@+id/change_modo"
+        android:background="@drawable/btn_green"
+        style="@style/ButtonText"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/modo"
+        android:layout_below="@+id/change_modo" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="STOP"
+        android:id="@+id/stop"
+        android:layout_below="@+id/modo"
+        android:background="@drawable/btn_red"
+        style="@style/ButtonText"/>
+
+
+    <com.josedlpozo.bluetootharduino.JoystickView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/joystickView"
+        android:layout_below="@+id/stop"/>
+
+</RelativeLayout>

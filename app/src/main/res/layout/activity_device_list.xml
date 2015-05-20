@@ -2,7 +2,7 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/primaryColor2"
+    android:background="@color/ColorPrimaryDark"
     >
     <include
         android:id="@+id/tool_bar"
@@ -10,22 +10,27 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         />
+
+    <Button android:id="@+id/button_scan"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_scan"
+        />
+
     <TextView android:id="@+id/title_paired_devices"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_paired_devices"
         android:textColor="#fff"
         android:textSize="20dp"
+        android:gravity="center"
         />
-    <Button android:id="@+id/button_scan"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/button_scan"
-        />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
+
 
 </LinearLayout>

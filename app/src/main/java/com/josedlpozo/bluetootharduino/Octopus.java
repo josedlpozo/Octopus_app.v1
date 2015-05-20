@@ -72,19 +72,6 @@ public class Octopus extends Activity {
                     }
                 });
 
-                Button autonomo = (Button) dialog.findViewById(R.id.autonomo);
-                // if button is clicked, close the custom dialog
-                autonomo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        MODO = MODO_AUTONOMO;
-                        Log.i(TAG,"MODO: " +MODO);
-                        bqzum.sendData(""+MODO,MOTOR);
-                        setModo();
-                        layout_joystick.setVisibility(View.GONE);
-                        dialog.dismiss();
-                    }
-                });
 
                 Button control = (Button) dialog.findViewById(R.id.control);
                 // if button is clicked, close the custom dialog

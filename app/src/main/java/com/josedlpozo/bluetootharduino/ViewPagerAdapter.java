@@ -34,10 +34,13 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
             Comenzar com = new Comenzar();
             return com;
         }
-        else             // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
+        else if(position == 1)             // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
             SensoresFragment sensor = new SensoresFragment();
             return sensor;
+        }else{
+            Control control = new Control();
+            return control;
         }
 
 
